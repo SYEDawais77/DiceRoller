@@ -9,12 +9,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val diceImage: ImageView = findViewById(R.id.imageView)
         diceImage.setImageResource(R.drawable.dice_6)
 
         val rollButton: Button = findViewById(R.id.button)
         rollButton.setOnClickListener {
-            when (rollDice()) {
+            val dice = Dice()
+
+            when (dice.rollDice()) {
                 1 -> diceImage.setImageResource(R.drawable.dice_1)
                 2 -> diceImage.setImageResource(R.drawable.dice_2)
                 3 -> diceImage.setImageResource(R.drawable.dice_3)
@@ -22,13 +25,15 @@ class MainActivity : AppCompatActivity() {
                 5 -> diceImage.setImageResource(R.drawable.dice_5)
                 6 -> diceImage.setImageResource(R.drawable.dice_6)
             }
-            diceImage.contentDescription = rollDice().toString()
+            diceImage.contentDescription = dice.rollDice().toString()
         }
-
     }
 
-    private fun rollDice(): Int {
 
+}
+
+class Dice(){
+    fun rollDice(): Int {
         return (1..6).random()
     }
 }
