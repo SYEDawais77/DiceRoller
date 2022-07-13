@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                 5 -> diceImage.setImageResource(R.drawable.dice_5)
                 6 -> diceImage.setImageResource(R.drawable.dice_6)
             }
-            diceImage.contentDescription = dice.rollDice().toString()
+            dice.rollDice().toString().also { diceImage.contentDescription = it }
         }
     }
 
